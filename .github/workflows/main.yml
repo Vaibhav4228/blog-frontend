@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-   
+    # Check out the code from the repository
     - uses: actions/checkout@v2
 
     # Install Node.js
@@ -20,12 +20,13 @@ jobs:
         node-version: '20'
         registry-url: 'https://registry.npmjs.org/'
 
-    
+    # Install npm dependencies
     - name: Install dependencies
       run: npm install
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+    # Install Vercel CLI
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
 
     # Authenticate with Vercel CLI
     - name: Authenticate with Vercel
@@ -41,4 +42,4 @@ jobs:
 
     # Deploy Project Artifacts to Vercel
     - name: Deploy Project Artifacts to Vercel
-      run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --project=${{ secrets.VERCEL_PROJECT_ID }} --org=${{ secrets.VERCEL_ORG_ID_SANITIZED }}
+      run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --project=${{ secrets.VERCEL_PROJECT_ID }} --org=${{ secrets.VERCEL_ORG_ID }}
