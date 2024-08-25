@@ -28,10 +28,6 @@ jobs:
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
 
-    # Authenticate with Vercel CLI
-    - name: Authenticate with Vercel
-      run: echo ${{ secrets.VERCEL_TOKEN }} | vercel login --token
-
     # Pull Vercel Environment Information
     - name: Pull Vercel Environment Information
       run: vercel pull --yes --environment=development --token=${{ secrets.VERCEL_TOKEN }}
