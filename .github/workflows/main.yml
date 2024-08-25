@@ -1,4 +1,9 @@
-name: Deploy to Vercel
+name: Vercel development Deployment
+
+env:
+
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 on:
   push:
@@ -6,25 +11,31 @@ on:
       - main
 
 jobs:
-  deploy:
+  Deploy-development:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # INSTALL NODEJS & NPM ON VERCEL
+      - uses: actions/checkout@v2
         name: Checkout code
 
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
         run: npm install
 
       - name: Install Vercel CLI
-        run: npm install -g vercel
+        run: npm install --global vercel@latest
 
-      - name: Deploy to Vercel
-        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=development
+
+      - name: Build Project Artifacts
+        run: vercel build --prod
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod
