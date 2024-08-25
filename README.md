@@ -15,20 +15,6 @@ The backend code for this application is available on GitHub: [blog-server](http
 - **Frontend**: Deployed on Vercel. [Live Frontend](https://zuai-lime.vercel.app/)
 - **Backend**: Deployed on Render. [Live Backend](https://blog-server-jqci.onrender.com)
 
-## Features
-
-- **Search Functionality**: Allows users to search for blog posts based on keywords.
-- **Comment Functionality**: Users can add, edit, and delete comments on blog posts.
-- **Post Management**: Create new blog posts, upload images using Multer, edit existing posts, and delete posts.
-- **Profile Page**: Users can update their profile information.
-- **My Blogs Page**: View a list of all your blog posts.
-
-## Running Locally
-
-To run the application locally, make the following changes:
-
-1. **Backend**: Replace the Render URL `https://blog-server-jqci.onrender.com` with `http://localhost:5000` in the `index.js` file of the backend for CORS configuration.
-2. **Frontend**: Replace the Vercel URL `https://zuai-lime.vercel.app/` with `http://localhost:5173/` in the `index.js` file of the frontend for CORS configuration.
 
 ### Backend Setup
 
